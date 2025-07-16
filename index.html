@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <title>xx</title>
+  <meta name="theme-color" content="#000001">
+
+  <!-- Style with GIF Background -->
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: url('https://cdn.discordapp.com/attachments/1389953178853970000/1392306726279315507/intro.gif?ex=6878f16f&is=68779fef&hm=77948a1045ad1af920576b3721da2404a2fc55dde676fff300a9848a8d794d34&') no-repeat center center fixed;
+      background-size: cover;
+      font-family: Arial, sans-serif;
+    }
+
+    /* Optional: Overlay for readability */
+    #user-page::before {
+      content: "";
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(0, 0, 0, 0.4); /* dark overlay */
+      z-index: -1;
+    }
+  </style>
+
+  <link rel="stylesheet" href="public/users/css/cat.css">
+  <link rel="icon" href="" type="image/x-icon">
+  <link rel="shortcut icon" href="" type="image/x-icon">
+  <meta content="A safe place by Trevor" property="og:title">
+  <meta content="https://www.anastscia.xyz/" property="og:url">
+  <meta content="https://i.ibb.co/MkZHLgm4/9201344d40ec78f7d29e68fe71bf0f66.jpg" property="og:image">
+  <meta content="#000001" data-react-helmet="true" name="theme-color">
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="effects.js"></script>
+  <script src="snow.js"></script>
+</head>
+<body>
+  <div class="music-visualizer">
+  <div class="bar"></div>
+  <div class="bar"></div>
+  <div class="bar"></div>
+  <div class="bar"></div>
+  <div class="bar"></div>
+</div>
+
+<style>
+.music-visualizer {
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  gap: 4px;
+  height: 30px;
+  margin-top: 15px;
+}
+
+.bar {
+  width: 5px;
+  height: 20px;
+  background: #00f7ff;
+  animation: bounce 1s infinite ease-in-out;
+}
+
+.bar:nth-child(2) { animation-delay: 0.1s; }
+.bar:nth-child(3) { animation-delay: 0.2s; }
+.bar:nth-child(4) { animation-delay: 0.3s; }
+.bar:nth-child(5) { animation-delay: 0.4s; }
+
+@keyframes bounce {
+  0%, 100% { height: 10px; }
+  50% { height: 30px; }
+}
+</style>
+
+  <div id="overlay">
+    <button class="overlaybtn" onclick="removeOverlay()">click</button>
+  </div>
+  <div id="user-page">
+    <div class="main-container" id="mainDiv">
+      <div class="profile-container">
+        <img class="pp" src="https://i.ibb.co/MkZHLgm4/9201344d40ec78f7d29e68fe71bf0f66.jpg" draggable="false" alt="profile">
+        <p class="username breathing" data-tooltip="">Trevor</p>
+
+        <div class="bio-container">
+          <div class="bio typewriter"></div>
+        </div>
+
+        <div class="pre-container">
+          <div class="pre">
+            <div class="cropped"><img draggable="false" id="rpc" alt=""></div>
+          </div>
+        </div>
+
+        <div class="links-container" id="linksDiv">
+          <div class="logo btc" onclick="window.open('https://discord.com/users/1365194749140795432', '_blank');">
+            <img src="pogi/dc.png" class="links" width="24" alt="dc">
+          </div>
+          <div class="logo telegram" onclick="window.open('https://t.me/trevoranastscia', '_blank');">
+            <img src="pogi/tg.png" class="links" width="24" alt="tg">
+          </div>
+          <div class="logo instagram" onclick="window.open('https://www.instagram.com/yo.nateeee/', '_blank');">
+            <img src="pogi/ig.png" class="links" width="24" alt="ig">
+          </div>
+        </div>
+
+        <div class="linksline"></div>
+        <div class="views-container"></div>
+        <div class="visitor-counter" style="margin-top: 10px; text-align: center; color: white; font-family: monospace;">
+        Visitors: <span id="visitor-count">0</span>
+        </div>
+      </div>
+    </div>
+
+    <audio id="backgroundsong" src="https://audio.jukehost.co.uk/bySTpXiAplLOILz539EbNGbIcAS7RxMU" loop autoplay></audio>
+  </div>
+<script>
+  // Initialize if not existing
+  fetch('https://api.countapi.xyz/get/anastscia.dev/visitor')
+    .then(res => res.json())
+    .then(data => {
+      if (data.error) {
+        // Create the counter first time
+        fetch('https://api.countapi.xyz/create?namespace=anastscia.dev&key=visitor&value=0')
+          .then(() => {
+            updateCounter(); // Call again after creation
+          });
+      } else {
+        updateCounter(); // Already exists
+      }
+    });
+
+  function updateCounter() {
+    fetch('https://api.countapi.xyz/update/anastscia.dev/visitor/?amount=1')
+      .then(res => res.json())
+      .then(data => {
+        document.getElementById('visitor-count').textContent = data.value.toLocaleString();
+      });
+  }
+</script>
+</body>
+</html>
