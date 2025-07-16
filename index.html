@@ -108,37 +108,13 @@
 
         <div class="linksline"></div>
         <div class="views-container"></div>
-        <div class="visitor-counter" style="margin-top: 10px; text-align: center; color: white; font-family: monospace;">
-        Visitors: <span id="visitor-count">0</span>
+        <div class="signature-text" style="margin-top: 10px; text-align: center; color: white; font-family: monospace;">
+        You matter, always.💜
         </div>
       </div>
     </div>
 
     <audio id="backgroundsong" src="https://audio.jukehost.co.uk/bySTpXiAplLOILz539EbNGbIcAS7RxMU" loop autoplay></audio>
   </div>
-<script>
-  // Initialize if not existing
-  fetch('https://api.countapi.xyz/get/anastscia.dev/visitor')
-    .then(res => res.json())
-    .then(data => {
-      if (data.error) {
-        // Create the counter first time
-        fetch('https://api.countapi.xyz/create?namespace=anastscia.dev&key=visitor&value=0')
-          .then(() => {
-            updateCounter(); // Call again after creation
-          });
-      } else {
-        updateCounter(); // Already exists
-      }
-    });
-
-  function updateCounter() {
-    fetch('https://api.countapi.xyz/update/anastscia.dev/visitor/?amount=1')
-      .then(res => res.json())
-      .then(data => {
-        document.getElementById('visitor-count').textContent = data.value.toLocaleString();
-      });
-  }
-</script>
 </body>
 </html>
